@@ -22,31 +22,29 @@ btn = 15	# Define button pin
 
 
 def setup():
-
 	""" Setup Raspberry Pi """
 
 	ADC0832_tmp.setup()				# Setup ADC0832
 	GPIO.setmode(GPIO.BOARD)	# Numbers GPIOs by physical location
 	GPIO.setup(btn, GPIO.IN, pull_up_down=GPIO.PUD_UP)	# Setup button pin as input an pull it up
-    GPIO.setup(16, GPIO.OUT)	# Servo Output pin
+    	GPIO.setup(16, GPIO.OUT)	# Servo Output pin
 	global state
 	state = ['up', 'down', 'left', 'right']	
 	p = GPIO.PWM(16, 50) # Servo PWM pin
-    p.start(7.5)
+   	p.start(7.5)
 
 
 def getResult():
-
-	"""#get joystick results """
+	"""get joystick results """
 
 	if ADC0832_tmp.getResult1() == 0:
-		return 1		#up
+		return 1	#up
 	if ADC0832_tmp.getResult1() == 255:
-		return 2		#down
+		return 2	#down
 	if ADC0832_tmp.getResult() == 0:
-                servoguy()
+                servoguy()	#call servo myguy
                 print('Servo Running!')
-		return 3		#left, and servo starts to run
+		return 3	#left, and servo starts to run
 	if ADC0832_tmp.getResult() == 255:
                 servoguy()
                 print('Servo Running!')
@@ -56,7 +54,6 @@ def getResult():
 		
 
 def servoguy():
-
     ''' Run the Servo '''
 
     try:
@@ -78,11 +75,12 @@ def loop():
 			print state[tmp - 1]
 
 def destory():
-	GPIO.cleanup()				# Release resource
+	GPIO.cleanup()		# Release resource
 
-if __name__ == '__main__':		# Program start from here
+if __name__ == '__main__':	# Program start from here
 	setup()
 	try:
 		loop()
 	except KeyboardInterrupt:  	# When 'Ctrl+C' is pressed, the child program destroy() will be  executed.
 		destory()
+		print('You have cancelled the program!')
