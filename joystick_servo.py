@@ -67,7 +67,6 @@ def servoguy():
         print('You have cancelled the program!')
         
 
-
 def loop():
 	while True:
 		tmp = getResult()
@@ -77,7 +76,8 @@ def loop():
 def destory():
 	GPIO.cleanup()		# Release resource
 
-if __name__ == '__main__':	# Program start from here
+	
+if __name__ == '__main__':	# Program starts from here
 	setup()
 	try:
 		loop()
