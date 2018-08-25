@@ -1,14 +1,11 @@
 #!/usr/bin/env python
-#------------------------------------------------------
+#-------------------------------------------------------------------------
 #
 #		This is a program for JoystickPS2 Module.
-#
-#		This program depend on ADC0832 ADC chip.
-#               
-#		Update 07/01/2018 to use servo Motor.
+#		This program depends on the ADC0832 ADC chip
+#		
 #	       
-#
-#------------------------------------------------------
+#-------------------------------------------------------------------------
 
 
 import ADC0832_tmp
